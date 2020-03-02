@@ -23,33 +23,32 @@ class GildedRose {
 
     public void update_quality() {
         Arrays.stream(items).forEach( item -> {
-            if (!item.name.equals(AGED_BRIE)
-                && !item.name.equals(BACKSTAGE_PASSES_CONCERT)
-                && item.quality > 0
-                && (!item.name.equals(HAND_OF_RAGNAROS))) {
-                    item.quality--;
-            }else if(item.quality < QUALITY_FIFTY){
-                    item.quality++;
-                if (item.name.equals(BACKSTAGE_PASSES_CONCERT)
-                        && (item.sell_in < SELL_IN_ELEVEN && item.quality < QUALITY_FIFTY
-                        || item.sell_in < SELL_IN_SIX && item.quality < QUALITY_FIFTY)) {
-                    item.quality++;
+            if (!item.getName().equals(AGED_BRIE)
+                    && !item.getName().equals(BACKSTAGE_PASSES_CONCERT)
+                    && !item.getName().equals(HAND_OF_RAGNAROS)
+                    && item.getQuality()> 0) {
+                item.setQuality(item.getQuality()-1);
+            }else if(item.getQuality()< QUALITY_FIFTY){
+                item.setQuality(item.getQuality()+1);
+                if (item.getName().equals(BACKSTAGE_PASSES_CONCERT) && (item.getSellIn()< SELL_IN_ELEVEN || item.getSellIn()< SELL_IN_SIX)) {
+                    item.setQuality(item.getQuality()+1);
                 }
             }
 
-            if (!item.name.equals(HAND_OF_RAGNAROS)) {
-                item.sell_in--;
+            if (!item.getName().equals(HAND_OF_RAGNAROS)) {
+                item.setSellIn(item.getSellIn()-1);
             }
 
-            if (item.sell_in < 0) {
-                if (!item.name.equals(AGED_BRIE)) {
-                    if (item.name.equals(BACKSTAGE_PASSES_CONCERT)) {
-                        item.quality = 0;
-                    } else if (item.quality > 0 && !item.name.equals(HAND_OF_RAGNAROS)) {
-                        item.quality--;
-                    }
-                } else if (item.quality < QUALITY_FIFTY) {
-                    item.quality++;
+            if (item.getSellIn() < 0) {
+                if (!item.getName().equals(AGED_BRIE)
+                        && !item.getName().equals(BACKSTAGE_PASSES_CONCERT)
+                        && !item.getName().equals(HAND_OF_RAGNAROS)
+                        && item.getQuality()> 0) {
+                    item.setQuality(item.getQuality()-1);
+                } else if (!item.getName().equals(AGED_BRIE)) {
+                    item.setQuality(0);
+                } else if (item.getQuality()< QUALITY_FIFTY) {
+                    item.setQuality(item.getQuality());
                 }
             }
         });
