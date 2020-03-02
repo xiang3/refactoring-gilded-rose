@@ -2,7 +2,7 @@ package com.gildedrose;
 
 import java.util.Arrays;
 
-class GildedRose {
+public class GildedRose {
     private static final String AGED_BRIE = "Aged Brie";
 
     private static final String BACKSTAGE_PASSES_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
@@ -15,7 +15,7 @@ class GildedRose {
 
     private static final Integer SELL_IN_ELEVEN = 11;
 
-    Item[] items;
+    private Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
