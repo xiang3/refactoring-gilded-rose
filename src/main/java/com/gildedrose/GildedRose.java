@@ -21,6 +21,14 @@ public class GildedRose {
         this.items = items;
     }
 
+    public Item[] getItems() {
+        return items;
+    }
+
+    public void setItems(Item[] items) {
+        this.items = items;
+    }
+
     public void update_quality() {
         Arrays.stream(items).forEach( item -> {
             if (!item.getName().equals(AGED_BRIE)
